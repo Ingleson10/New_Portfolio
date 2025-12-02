@@ -28,11 +28,16 @@ SECRET_KEY = 'django-insecure-yvnqm%c0p3nn^5q^rxbp$g0#!m93o@h8yz2#9eg7^8*73hr(%6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "new-portfolio-0mwz.onrender.com",  # domínio do Render
+]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "https://new-portfolio-0mwz.onrender.com",  # domínio do Render
 ]
 
 CORS_ALLOWED_ORIGINS = [
