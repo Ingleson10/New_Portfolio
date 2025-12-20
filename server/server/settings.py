@@ -31,18 +31,29 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "new-portfolio-0mwz.onrender.com",  # domínio do Render
+    "new-portfolio-0mwz.onrender.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://new-portfolio-0mwz.onrender.com",  # domínio do Render
+
+    # Vercel (ajuste para o(s) seu(s) domínio(s))
+    "https://new-portfolio-six-iota.vercel.app",
+    "https://new-portfoliogit.vercel.app",
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+
+    "https://new-portfolio-six-iota.vercel.app",
+    "https://new-portfoliogit.vercel.app",
+]
+
+# opcional para previews:
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://.*\.vercel\.app$",
 ]
 
 # Application definition
