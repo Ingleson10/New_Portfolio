@@ -110,11 +110,14 @@ PORTFOLIO_LOGO_URL = os.getenv("PORTFOLIO_LOGO_URL")
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    "default": dj_database_url.config(
-        default=os.getenv("DATABASE_URL"),
-        conn_max_age=600,
-        ssl_require=True,
-    )
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "new_portfolio",
+        "USER": "erik",
+        "PASSWORD": "Elements@2025",
+        "HOST": "",
+        "PORT": "",
+    }
 }
 
 """EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
