@@ -11,8 +11,8 @@ from .views import (
     sections_list,
     projects_list,
     project_detail,
-    portfolio_full,      # <- aqui está certo
-    ContactCreateView,   # pode importar aqui junto também
+    portfolio_full,
+    ContactCreateView,   
 )
 
 urlpatterns = [

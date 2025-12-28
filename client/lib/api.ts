@@ -1,7 +1,7 @@
 // lib/api.ts
 
-const BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:8000";
+const RAW = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+const BASE_URL = RAW.replace(/\/$/, "");
 
 export interface PortfolioProfile {
   id: number;
@@ -109,16 +109,28 @@ export interface PortfolioResponse {
   projects: Project[];
 }
 
-export async function fetchPortfolio(): Promise<PortfolioResponse> {
-  const res = await fetch(`${BASE_URL}/api/portfolio/`, {
-    cache: "no-store", // sempre dados atualizados
-  });
-
-  if (!res.ok) {
-    throw new Error(`Erro ao buscar portfólio: ${res.status}`);
+async function safeJson<T>(res: Response): Promise<T | null> {
+  try {
+    return (await res.json()) as T;
+  } catch {
+    return null;
   }
+}
 
-  return res.json();
+export async function fetchPortfolio(): Promise<PortfolioResponse | null> {
+  if (!BASE_URL) return null;
+
+  try {
+    const res = await fetch(`${BASE_URL}/api/portfolio/`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) return null;
+
+    return (await res.json()) as PortfolioResponse;
+  } catch {
+    return null;
+  }
 }
 
 export async function sendContactMessage(payload: {
@@ -127,17 +139,19 @@ export async function sendContactMessage(payload: {
   subject: string;
   message: string;
 }) {
+  if (!BASE_URL) {
+    throw new Error("API_BASE_URL não configurada no deploy.");
+  }
+
   const res = await fetch(`${BASE_URL}/api/contact/`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
 
   if (!res.ok) {
-    const errorBody = await res.json().catch(() => ({}));
-    throw new Error(errorBody.error || "Erro ao enviar mensagem de contato.");
+    const errorBody = await safeJson<{ error?: string }>(res);
+    throw new Error(errorBody?.error || "Erro ao enviar mensagem de contato.");
   }
 
   return res.json();

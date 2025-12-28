@@ -224,17 +224,29 @@ function getGithubUsername(url: string | null): string | null {
 export default async function HomePage() {
   const data = (await fetchPortfolio()) as PortfolioData;
 
+  if (!data) {
+    return (
+      <main style={{ padding: 24 }}>
+        <h1>Portfólio indisponível</h1>
+        <p>
+          A API não respondeu. Verifique a env <b>NEXT_PUBLIC_API_BASE_URL</b> no deploy
+          e se o backend está online.
+        </p>
+      </main>
+    );
+  }
+
   const {
-    profile,
-    sections,
-    skills,
-    experiences,
-    certifications,
-    education,
-    services,
-    languages,
-    projects,
-  } = data;
+  profile = null,
+  sections = [],
+  skills = [],
+  experiences = [],
+  certifications = [],
+  education = [],
+  services = [],
+  languages = [],
+  projects = [],
+} = data ?? {};
 
   const isSectionEnabled = (key: string): boolean =>
     sections.some(

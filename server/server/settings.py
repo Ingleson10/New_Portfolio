@@ -29,32 +29,21 @@ SECRET_KEY = 'django-insecure-yvnqm%c0p3nn^5q^rxbp$g0#!m93o@h8yz2#9eg7^8*73hr(%6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-    "new-portfolio-0mwz.onrender.com",
-]
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
-CSRF_TRUSTED_ORIGINS = [
+
+'''CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://*.vercel.app",
 
-    # Vercel (ajuste para o(s) seu(s) domínio(s))
-    "https://new-portfolio-six-iota.vercel.app",
-    "https://new-portfoliogit.vercel.app",
-    "https://new-portfolio-nine-olive.vercel.app",
-]
 
-CORS_ALLOWED_ORIGINS = [
+]'''
+
+"""CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-]
+]"""
 
-# opcional para previews:
-CORS_ALLOWED_ORIGIN_REGEXES = [
-    r"^https://.*\.vercel\.app$",
-]
 # Application definition
 
 INSTALLED_APPS = [
