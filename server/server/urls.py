@@ -16,10 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from core.views import ContactCreateView
+from django.http import JsonResponse
+
+
+def health(request):
+    return JsonResponse({"status": "ok"})
+
 
 urlpatterns = [
+    path("", health),  # opcional, só pra ter uma home que não seja 404
     path("admin/", admin.site.urls),
-    path("api/", include("core.urls")),  # <- nossa API
-    path("api/contact/", ContactCreateView.as_view(), name="contact_create"),
+    path("api/", include("core.urls")),
 ]
