@@ -53,7 +53,6 @@ class UserProfile(models.Model):
     updated_at = models.DateTimeField("Atualizado em", auto_now=True)
 
     class Meta:
-        managed = False  # tabela já existe no banco
         db_table = "app_user"
         verbose_name = "Perfil"
         verbose_name_plural = "Perfis"
@@ -105,7 +104,6 @@ class Skill(models.Model):
     order_index = models.IntegerField("Ordem", default=0)
 
     class Meta:
-        managed = False
         db_table = "skill"
         verbose_name = "Skill"
         verbose_name_plural = "Skills"
@@ -132,7 +130,6 @@ class Experience(models.Model):
     order_index = models.IntegerField("Ordem", default=0)
 
     class Meta:
-        managed = False
         db_table = "experience"
         verbose_name = "Experiência"
         verbose_name_plural = "Experiências"
@@ -173,7 +170,6 @@ class Certification(models.Model):
     order_index = models.IntegerField("Ordem", default=0)
 
     class Meta:
-        managed = False
         db_table = "certification"
         verbose_name = "Certificação"
         verbose_name_plural = "Certificações"
@@ -212,7 +208,6 @@ class Project(models.Model):
     updated_at = models.DateTimeField("Atualizado em", auto_now=True)
 
     class Meta:
-        managed = False
         db_table = "project"
         verbose_name = "Projeto"
         verbose_name_plural = "Projetos"
@@ -240,7 +235,6 @@ class ContactMessage(models.Model):
     is_read = models.BooleanField("Lida?", default=False)
 
     class Meta:
-        managed = False
         db_table = "contact_message"
         verbose_name = "Mensagem de contato"
         verbose_name_plural = "Mensagens de contato"
@@ -268,7 +262,6 @@ class Education(models.Model):
     order_index = models.IntegerField("Ordem", default=0)
 
     class Meta:
-        managed = False
         db_table = "education"
         verbose_name = "Formação"
         verbose_name_plural = "Formações"
@@ -306,7 +299,6 @@ class Service(models.Model):
     order_index = models.IntegerField("Ordem", default=0)
 
     class Meta:
-        managed = False
         db_table = "service"
         verbose_name = "Serviço"
         verbose_name_plural = "Serviços"
@@ -327,7 +319,6 @@ class Language(models.Model):
     order_index = models.IntegerField("Ordem", default=0)
 
     class Meta:
-        managed = False
         db_table = "language"
         verbose_name = "Idioma"
         verbose_name_plural = "Idiomas"
@@ -348,7 +339,6 @@ class SectionConfig(models.Model):
     order_index = models.IntegerField("Ordem", default=0)
 
     class Meta:
-        managed = False  # tabela já criada manualmente
         db_table = "section_config"
         verbose_name = "Configuração de seção"
         verbose_name_plural = "Configurações de seções"
